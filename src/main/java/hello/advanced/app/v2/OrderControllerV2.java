@@ -1,8 +1,7 @@
-package hello.advanced.app.v1;
+package hello.advanced.app.v2;
 
-import hello.advanced.app.v0.OrderServiceV0;
 import hello.advanced.trace.TraceStatus;
-import hello.advanced.trace.hellotrace.HelloTraceV1;
+import hello.advanced.trace.hellotrace.HelloTraceV2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,17 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class OrderControllerV1 {
+public class OrderControllerV2 {
 
-    private final OrderServiceV1 orderService;
-    private final HelloTraceV1 trace;
+    private final OrderServiceV2 orderService;
+    private final HelloTraceV2 trace;
 
-    @GetMapping("/v1/request")
-    public String requet(@RequestParam("itemId")String itemId) {
+    @GetMapping("/v2/request")
+    public String request(@RequestParam("itemId") String itemId) {
         TraceStatus status = null;
         try {
             status = trace.begin("OrderController.request()");
-            orderService.orderItem(itemId);
+            orderService.orderItem(status.getTraceId(), itemId);
             trace.end(status);
             return "ok";
         } catch (Exception e) {
