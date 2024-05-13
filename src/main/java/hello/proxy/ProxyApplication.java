@@ -14,7 +14,8 @@ import org.springframework.context.annotation.Import;
 
 //@Import({AppV1Config.class, AppV2Config.class})
 //@Import(InterfaceProxyConfig.class)
-@Import(ConcreteProxyConfig.class)
+//@Import(ConcreteProxyConfig.class)
+@Import(ProxyApplication.class)
 @SpringBootApplication(scanBasePackages = "hello.proxy.app") //주의
 public class ProxyApplication {
 
