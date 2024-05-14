@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
+import java.lang.reflect.Method;
+
 @Slf4j
 public class LogTraceAdvice implements MethodInterceptor {
 
@@ -19,7 +21,8 @@ public class LogTraceAdvice implements MethodInterceptor {
     public Object invoke(MethodInvocation invocation) throws Throwable {
         TraceStatus status = null;
         try {
-            String message = invocation.getClass().getName() + "." + invocation.getMethod().getName();
+            Method method = invocation.getMethod();
+            String message = method.getDeclaringClass().getSimpleName() + "." + method.getName();
             status = logTrace.begin(message);
 
             Object result = invocation.proceed();
