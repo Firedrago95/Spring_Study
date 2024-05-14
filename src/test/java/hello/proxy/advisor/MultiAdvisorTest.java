@@ -67,6 +67,7 @@ public class MultiAdvisorTest {
 
         ServiceInterface target = new ServiceImpl();
         ProxyFactory proxyFactory1 = new ProxyFactory(target);
+        // 어드바이저 적용 순서대로 실행된다.
         proxyFactory1.addAdvisor(advisor2);
         proxyFactory1.addAdvisor(advisor1);
         ServiceInterface proxy = (ServiceInterface) proxyFactory1.getProxy();
