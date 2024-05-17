@@ -17,7 +17,8 @@ public class AspectV4 {
     }
 
     /**
-     *  어드바이스 추가
+     *  포인트컷 외부 호출
+     *  포인트컷을 여러 어드바이스에서 함께 사용할때 유용하다.
      */
     @Around("hello.aop.order.aop.Pointcuts.orderAndService()")
     public Object doTransaction(ProceedingJoinPoint joinPoint) throws Throwable {
