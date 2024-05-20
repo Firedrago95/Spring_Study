@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MemberServiceImpl implements MemberService{
     @Override
-    @MethodAop
+    @MethodAop("test value")
     public String hello(String param) {
         return "ok";
     }
